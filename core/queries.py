@@ -132,3 +132,65 @@ def query_company():
     '''
 
     return query
+
+
+def query_histories():
+    """
+    Build query for histories.
+    """
+    query = f'''
+    {{
+        histories {{
+            id
+            event_date_unix
+            event_date_utc
+            title
+        }}
+    }}
+    '''
+
+    return query
+
+
+def query_history(id):
+    """
+    Build query for single history event.
+    """
+    query = f'''
+    {{
+        history(id: "{id}") {{
+            details
+            event_date_utc
+            links {{
+                article
+                reddit
+                wikipedia
+            }}
+            title
+            flight {{
+                details
+                is_tentative
+                launch_date_local
+                launch_date_unix
+                launch_date_utc
+                launch_site {{
+                    site_id
+                    site_name_long
+                    site_name
+                }}
+                launch_success
+                launch_year
+                links {{
+                    video_link
+                }}
+                mission_name
+                rocket {{
+                    rocket_name
+                    rocket_type
+                }}
+            }}
+        }}
+    }}
+    '''
+
+    return query
