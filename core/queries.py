@@ -22,6 +22,7 @@ def query_capsules():
 
     return query
 
+
 def query_capsule(id):
     """
     build capsule query by id.
@@ -99,6 +100,33 @@ def query_capsule(id):
                     }}
                 }}
             }}
+        }}
+    }}
+    '''
+
+    return query
+
+
+def query_company():
+    """
+    Builds company query.
+    """
+    query = f'''
+    {{
+        company {{
+            ceo
+            coo
+            cto_propulsion
+            cto
+            employees
+            founded
+            founder
+            launch_sites
+            name
+            summary
+            test_sites
+            valuation
+            vehicles
         }}
     }}
     '''

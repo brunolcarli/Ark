@@ -2,7 +2,7 @@ import logging
 import discord
 from discord.ext import commands, tasks
 from ark.settings import __version__, DRAGON_IMG
-from core.api_requests import get_capsules, get_capsule
+from core.api_requests import get_capsules, get_capsule, get_company
 
 
 client = commands.Bot(command_prefix='x:')
@@ -148,3 +148,28 @@ async def capsule(ctx, id=None):
         embed.add_field(name='Description', value=description, inline=False)
 
     return await ctx.send(':rocket: Showing capsule info!', embed=embed)
+
+
+@client.command()
+async def company(ctx):
+    """
+    Get SpaceX company information.
+    """
+    data = get_company()
+    if not data.get('data'):
+        return await ctx.send('Oops, something wrong happened...')
+
+    company = data['data'].get('company', {})
+    embed = discord.Embed(color=0x1E1E1E, type='rich')
+
+    embed.add_field(name='CEO', value=company.get('ceo'), inline=True)
+    embed.add_field(name='COO', value=company.get('coo'), inline=True)
+    embed.add_field(name='CTO propulsion', value=company.get('cto_propulsion'), inline=True)
+    embed.add_field(name='CTO', value=company.get('cto'), inline=True)
+    embed.add_field(name='Employees count', value=company.get('employees'), inline=True)
+    embed.add_field(name='Foundig year', value=company.get('founded'), inline=True)
+    embed.add_field(name='Founder', value=company.get('founder'), inline=True)
+    embed.add_field(name='Launch sites', value=company.get('launch_sites'), inline=True)
+    embed.add_field(name='Summary', value=company.get('summary'), inline=False)
+
+    return await ctx.send(f':rocket: {company.get("name")}!', embed=embed)
