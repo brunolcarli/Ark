@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  ark:
+    build: .
+    image: ark:devel
+    restart: on-failure
+    container_name: ark_container
+    command: make run
+    networks:
+      - app-tier
+    env_file: ark/environment/ark_env
+    volumes:
+      - .:/app
+
+networks:
+  app-tier:
+    driver: bridge
+
+volumes:
+  static_data:
