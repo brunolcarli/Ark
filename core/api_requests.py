@@ -1,6 +1,8 @@
 import requests
 from core.queries import (query_capsules, query_capsule, query_company,
-                          query_histories, query_history)
+                          query_histories, query_history, query_rockets, query_rocket)
+
+
 
 
 URL = 'https://api.spacex.land/graphql/'
@@ -48,4 +50,16 @@ def get_history(id):
     """
     response = requests.post(URL, json={'query': query_history(id)})
 
+    return response.json()
+def get_rockets():
+    """
+    request rockets information
+    """
+    response = requests.post(URL, json={'query': query_rockets()})
+    return response.json()
+def get_rocket(id):
+    """
+    request single rocket information
+    """
+    response = requests.post(URL, json={'query': query_rocket(id)})
     return response.json()

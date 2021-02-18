@@ -194,3 +194,46 @@ def query_history(id):
     '''
 
     return query
+def query_rockets():
+
+    """
+    request all rockets
+    """
+    query = '''
+    {
+      rockets {
+       id
+      }
+    }
+
+    '''
+    return query
+def query_rocket(id):
+    """
+    request a single rocket
+    """
+    query = f"""
+        {{
+            rocket(id: "{id}") {{
+                active
+                company
+                cost_per_launch
+                country
+                description
+                type
+                success_rate_pct
+                name
+                height {{
+                  feet
+                  meters
+                }}
+              }}
+        }}
+    """
+
+
+    return query
+
+
+
+
