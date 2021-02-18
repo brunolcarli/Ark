@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands, tasks
 from ark.settings import __version__, DRAGON_IMG
 from core.api_requests import (get_capsules, get_capsule, get_company, get_histories,
-                               get_history, get_missions, get_mission)
+                               get_history, get_missions, get_mission, get_rockets, get_rocket)
 
 
 client = commands.Bot(command_prefix='x:')

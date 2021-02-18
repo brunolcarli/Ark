@@ -1,7 +1,7 @@
 import requests
 from core.queries import (query_capsules, query_capsule, query_company,
                           query_histories, query_history, query_missions,
-                          query_mission)
+                          query_mission, query_rockets, query_rocket)
 
 
 URL = 'https://api.spacex.land/graphql/'
