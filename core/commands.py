@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands, tasks
 from ark.settings import __version__, DRAGON_IMG
 from core.api_requests import (get_capsules, get_capsule, get_company, get_histories,
-                               get_history)
+                               get_history, get_rockets, get_rocket)
 
 
 client = commands.Bot(command_prefix='x:')
@@ -159,7 +159,7 @@ async def company(ctx):
     data = get_company()
     if not data.get('data'):
         return await ctx.send('Oops, something wrong happened...')
-
+    
     company = data['data'].get('company', {})
     embed = discord.Embed(color=0x1E1E1E, type='rich')
 
@@ -197,6 +197,7 @@ async def histories(ctx):
         )
 
     return await ctx.send(':rocket: Showing SpaceX launch histories!', embed=embed)
+
 
 
 @client.command()
@@ -268,3 +269,33 @@ async def history(ctx, id=None):
     embed.add_field(name='Details', value=details, inline=False)
 
     return await ctx.send(title, embed=embed)
+@client.command()
+async def rockets(ctx):
+    data = get_rockets()
+    embed = discord.Embed(type='rich')
+
+    rockets = data['data'].get('rockets', {})
+    for i in rockets:
+        embed.add_field(name=f'ID: {i.get("id")} ', value=f'**Name: {str(i.get("id"))}**', inline=True)
+
+    await ctx.send("Rocket ids",embed=embed)
+@client.command()
+async def rocket(ctx, id=None):
+    if not id:
+        await ctx.send('must specify an id')
+    data = get_rocket(id)
+    rocket = data["data"].get('rocket', {})
+    embed = discord.Embed(type="rich")
+    if not rocket:
+       await ctx.send('Ops... Something wrong happened')
+
+    embed.add_field(name='Active', value=rocket.get('active'), inline=True)
+    embed.add_field(name='company', value=rocket.get('company'), inline=True)
+    embed.add_field(name='Country', value=rocket.get('country'), inline=True)
+    embed.add_field(name='Description', value=rocket.get('description'), inline=True)
+    embed.add_field(name="Cost Per launch", value=rocket.get('cost_per_launch'), inline=True)
+    embed.add_field(name='Sucess Rate', value=rocket.get('success_rate_pct'), inline=True)
+    embed.add_field(name='height in Meters', value=rocket['height'].get('meters'), inline=True)
+    embed.add_field(name='Height in feet', value=rocket['height'].get('feet'), inline=True)
+
+    await ctx.send(embed=embed)
