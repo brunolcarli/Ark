@@ -355,7 +355,6 @@ async def mission(ctx, id=None):
     website = f'[Go to the website]({mission.get("website")})'
     manufacturers = mission.get('manufacturers')
     description = mission.get('description')
-    payloads = mission.get('payloads')
 
     embed.add_field(name=':satellite_orbital: Name', value=name, inline=True)
     embed.add_field(name=':id: Id', value=id, inline=True)
