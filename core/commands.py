@@ -3,7 +3,7 @@ import discord
 from discord.ext import commands, tasks
 from ark.settings import __version__, DRAGON_IMG
 from core.api_requests import (get_capsules, get_capsule, get_company, get_histories,
-                               get_history, get_rockets, get_rocket)
+                               get_history, get_missions, get_mission, get_rockets, get_rocket)
 
 
 client = commands.Bot(command_prefix='x:')
@@ -306,3 +306,61 @@ async def rocket(ctx, id=None):
     embed.add_field(name='Height in feet', value=rocket['height'].get('feet'), inline=True)
 
     await ctx.send(embed=embed)
+
+@client.command()
+async def missions(ctx):
+    """
+    Lists all missions.
+    """
+    data = get_missions()
+
+    if not data.get('data'):
+        return ctx.send('Oops, something wrong happened...')
+
+    missions = data['data'].get('missions', [])
+    embed = discord.Embed(color=0x1E1E1E, type='rich')
+
+    for mission in missions:
+        name = mission.get('name')
+
+        body = f'Name: {name}'
+        embed.add_field(
+            name=f'ID: {mission.get("id")}',
+            value=body,
+            inline=True
+        )
+
+    return await ctx.send(':rocket: Showing missions!', embed=embed)
+
+@client.command()
+async def mission(ctx, id=None):
+    """
+    Get data from a specific Mission by ID.
+    usage example:
+        x:mission 9D1B7E0
+    """
+    data = get_mission(id)
+
+    if not id:
+        return await ctx.send('Must specify a mission ID!')
+
+    if not data.get('data'):
+        return await ctx.send('Oops, something wrong happened...')
+
+    mission = data['data'].get('mission', {})
+    embed = discord.Embed(color=0x1E1E1E, type='rich')
+
+    name = mission.get('name')
+    id = mission.get('id')
+    website = f'[Go to the website]({mission.get("website")})'
+    manufacturers = mission.get('manufacturers')
+    description = mission.get('description')
+
+    embed.add_field(name=':satellite_orbital: Name', value=name, inline=True)
+    embed.add_field(name=':id: Id', value=id, inline=True)
+    embed.add_field(name=':exclamation: Manufacturer', value=manufacturers[len(manufacturers)-1],
+                    inline=True)
+    embed.add_field(name=':link: Website', value=website, inline=True)
+    embed.add_field(name='Description', value=description, inline=False)
+
+    return await ctx.send(':rocket: Showing mission info!', embed=embed)
