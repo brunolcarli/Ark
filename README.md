@@ -12,7 +12,7 @@
 
 <div align="center">
 
-> [![Version badge](https://img.shields.io/badge/version-0.1.1-silver.svg)]()
+> [![Version badge](https://img.shields.io/badge/version-0.1.0-silver.svg)]()
 [![Docs Link](https://badgen.net/badge/docs/github_wiki?icon=github)](https://github.com/brunolcarli/Ark/wiki)
 [![Add to discord](https://badgen.net/badge/icon/discord?icon=discord&label)]()
 
@@ -73,6 +73,14 @@ or on windows:
 
 ## Running with docker
 
+First of all make sure you have docker installed on your machine:
+
+```
+$ docker --version
+Docker version 20.10.2, build 2291f61
+```
+
+If you dont have docker installed go to [Docker website](https://www.docker.com/) and find out how to install a distribution for your operating system.
 
 Create a file named `ark_env` in `ark/environment/` and add yout bot token
 
@@ -91,5 +99,5 @@ Then:
 
 
 ```
-docker-compose build && docker-compose up -d
+$ docker-compose build && docker-compose up -d
 ```
