@@ -271,6 +271,10 @@ async def history(ctx, id=None):
     return await ctx.send(title, embed=embed)
 @client.command()
 async def rockets(ctx):
+    """
+    Show Rockets and their id
+    """
+
     data = get_rockets()
     embed = discord.Embed(type='rich')
 
@@ -281,6 +285,9 @@ async def rockets(ctx):
     await ctx.send("Rocket ids",embed=embed)
 @client.command()
 async def rocket(ctx, id=None):
+    """
+    Show detailed information about a single rocket based on it ID
+    """
     if not id:
         await ctx.send('must specify an id')
     data = get_rocket(id)
