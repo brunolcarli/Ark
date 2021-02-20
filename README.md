@@ -12,7 +12,7 @@
 
 <div align="center">
 
-> [![Version badge](https://img.shields.io/badge/version-0.1.0-silver.svg)]()
+> [![Version badge](https://img.shields.io/badge/version-0.1.2-silver.svg)]()
 [![Docs Link](https://badgen.net/badge/docs/github_wiki?icon=github)](https://github.com/brunolcarli/Ark/wiki)
 [![Add to discord](https://badgen.net/badge/icon/discord?icon=discord&label)]()
 
@@ -34,7 +34,7 @@ $ git clone https://github.com/brunolcarli/Ark.git
 $ cd Ark
 ```
 
-Create a `.env` on the root and add the TOKEN you get from discord developers portal:
+Create a `.env` on the root and add the TOKEN you get from discord developers protal:
 
 ```
 TOKEN=<your_test_bot_token>
