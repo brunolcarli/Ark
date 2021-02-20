@@ -1,6 +1,6 @@
 import logging
 import sys
-from ark.settings import TOKEN, __version__, ENV_REF
+from ark.settings import Config, __version__
 from core.commands import client
 from core.keep_alive import keep_alive
 
@@ -48,7 +48,7 @@ if __name__ == '__main__':
     )
     log.info('Running ARK version: %s\n', __version__)
 
-    if ENV_REF == 'replit':
+    if Config.ENV_REF == 'replit':
         keep_alive()
 
-    client.run(TOKEN)
+    client.run(Config.TOKEN)
