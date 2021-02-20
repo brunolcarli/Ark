@@ -1,8 +1,7 @@
 from discord.ext import commands
 import discord
 from discord.ext.commands.context import Context
-from core.api_requests import (get_capsules, get_capsule)
-
+from core.api_requests import APIRequest
 from ark.settings import __version__, Config
 
 
@@ -22,7 +21,7 @@ class InfoOfCapsules(commands.Cog):
         if not id:
             return await ctx.send('Must specify a capsule ID!')
         
-        data = get_capsule(id)
+        data = APIRequest.get_capsule(id)
         if not data.get('data'):
             return await ctx.send('Oops, something wrong happened...')
 
@@ -119,7 +118,7 @@ class InfoOfCapsules(commands.Cog):
         """
         Lists SpaceX capsules.
         """
-        data = get_capsules()
+        data = APIRequest.get_capsules()
         if not data.get('data'):
             return ctx.send('Oops, something wrong happened...')
 

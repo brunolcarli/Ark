@@ -1,4 +1,4 @@
-from core.api_requests import get_rockets,get_rocket
+from core.api_requests import APIRequest
 from discord.ext import commands
 from discord.ext.commands.context import Context
 import discord
@@ -17,7 +17,7 @@ class InfoOfRockets(commands.Cog):
         if not id:
             return await ctx.send('must specify an id')
 
-        data = get_rocket(id)
+        data = APIRequest.get_rocket(id)
         rocket = data["data"].get('rocket', {})
         embed = discord.Embed(type="rich")
         if not rocket:
@@ -40,7 +40,7 @@ class InfoOfRockets(commands.Cog):
         Show Rockets and their id
         """
 
-        data = get_rockets()
+        data = APIRequest.get_rockets()
         embed = discord.Embed(type='rich')
 
         rockets = data['data'].get('rockets', {})
