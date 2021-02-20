@@ -2,3 +2,4 @@ discord==1.0.1
 requests==2.22.0
 python-decouple==3.1
 discord-pretty-help==1.2.1
+Flask==1.1.1
