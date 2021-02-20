@@ -12,7 +12,7 @@
 
 <div align="center">
 
-> [![Version badge](https://img.shields.io/badge/version-0.1.3-silver.svg)]()
+> [![Version badge](https://img.shields.io/badge/version-0.2.0-silver.svg)]()
 [![Docs Link](https://badgen.net/badge/docs/github_wiki?icon=github)](https://github.com/brunolcarli/Ark/wiki)
 [![Add to discord](https://badgen.net/badge/icon/discord?icon=discord&label)]()
 
