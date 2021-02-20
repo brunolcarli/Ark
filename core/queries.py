@@ -235,5 +235,38 @@ def query_rocket(id):
     return query
 
 
+def query_missions():
+    """
+    Build the Query for missions
+    """
 
+    query = f'''
+    {{
+        missions {{
+            id
+            name
+            manufacturers
+        }}
+    }}
+    '''
 
+    return query
+
+def query_mission(id):
+    """
+    Build the Query for a single mission
+    """
+
+    query = f'''
+    {{
+        mission(id:"{id}") {{
+            id
+            name
+            manufacturers
+            description
+            website
+        }}
+    }}
+    '''
+
+    return query
