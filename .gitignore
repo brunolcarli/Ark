@@ -70,3 +70,5 @@ script.txt
 .vscode/launch.json
 .vscode/tasks.json
 .env
+venv/
+.gitignore
